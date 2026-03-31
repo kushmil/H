@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - THE END.</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    
+    <!-- iziToast CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+    
+    <!-- FontAwesome for Toggle Icon & Button Icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Light Theme (Default) */
+            --bg-color: #fff200;
+            --text-color: #0b0b0b;
+            --btn-bg: #0b0b0b;
+            --btn-text: #fff200;
+            --hover-bg: #333;
+        }
+
+        /* Dark Theme Variables */
+        body.dark-theme {
+            --bg-color: #0d0d0d;
+            --text-color: #fff200;
+            --btn-bg: #fff200;
+            --btn-text: #0d0d0d;
+            --hover-bg: #e6da00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 1.3;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            overflow-x: hidden;
+            padding: 4vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s, background-color 0.4s;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1) rotate(15deg);
+            background-color: var(--hover-bg);
+        }
+
+        /* Top 404 Header */
+        .error-header {
+            font-size: clamp(14px, 2vw, 24px);
+            letter-spacing: 0.02em;
+            margin-bottom: 2vh;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Main Layout */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2vw;
+            max-width: 1800px;
+            margin: 0 auto;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Hero Text - MADE MASSIVE */
+        .hero-text {
+            grid-column: 1 / 9;
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(8rem, 28vw, 45rem); /* Increased significantly */
+            line-height: 0.88; /* Tight but keeping lines separated */
+            letter-spacing: 0.01em; 
+            white-space: nowrap; 
+            margin-left: -0.5vw;
+        }
+
+        /* Side Content */
+        .hero-side {
+            grid-column: 9 / 13;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 2vw;
+        }
+
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5.5vw, 7rem);
+            line-height: 0.85;
+            letter-spacing: 0.02em;
+            margin-bottom: 3vw;
+        }
+
+        /* FAHHHHH Button */
+        .fah-btn {
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+            border: 4px solid var(--text-color);
+            padding: 1.5vw 3vw;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.2rem, 2.5vw, 3rem);
+            text-transform: uppercase;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+            width: fit-content;
+        }
+
+        body.dark-theme .fah-btn {
+            box-shadow: 8px 8px 0px rgba(255, 242, 0, 0.2);
+        }
+
+        .fah-btn:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0px rgba(0,0,0,0.2);
+            background-color: var(--hover-bg);
+        }
+        
+        body.dark-theme .fah-btn:hover {
+            box-shadow: 12px 12px 0px rgba(255, 242, 0, 0.3);
+        }
+
+        .fah-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px transparent;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1100px) {
+            .hero-side { padding-left: 0; }
+        }
+
+        @media (max-width: 900px) {
+            body { padding: 5vw; }
+            .grid-container {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5vw;
+            }
+            .hero-text {
+                font-size: 38vw; /* Pushed larger for tablets */
+                line-height: 0.92; 
+                margin-left: -1vw;
+            }
+            .serif-title {
+                font-size: 14vw;
+                margin-bottom: 5vw;
+                margin-top: 2vw;
+            }
+            .fah-btn {
+                font-size: 6.5vw;
+                padding: 4vw 6vw;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text { 
+                font-size: 43vw; /* Absolute max size for mobile phones */
+                line-height: 0.96; /* Perfect gap vertical spacing */
+                letter-spacing: 0; 
+                margin-left: -1vw;
+            }
+        }
+
+        /* SweetAlert Custom Font Override */
+        .swal-custom-font {
+            font-family: 'Inter', Helvetica, Arial, sans-serif !important;
+            text-transform: uppercase;
+            border: 4px solid var(--text-color) !important;
+            border-radius: 0 !important;
+        }
+        .swal2-styled { border-radius: 0 !important; font-weight: 900 !important; }
+    </style>
+</head>
+<body>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="error-header">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        ERROR 404 - PAGE NOT FOUND
+    </div>
+
+    <div class="grid-container">
+        
+        <!-- MASSIVE TEXT -->
+        <div class="hero-text">
+            THE<br>END.
+        </div>
+
+        <!-- RIGHT SIDE CONTENT -->
+        <div class="hero-side">
+            <div class="serif-title">NOTHING<br>LASTS<br>FOREVER</div>
+            
+            <!-- FAHHHHH BUTTON -->
+            <button class="fah-btn" onclick="triggerFahhhhh()">
+                <i class="fa-brands fa-instagram"></i> FAHHHHH
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- iziToast -->
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+
+    <script>
+        // --- Theme Toggle Logic ---
+        const body = document.body;
+        const themeIcon = document.getElementById('themeIcon');
+        
+        // Check local storage for preference
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-theme');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        function toggleTheme() {
+            body.classList.toggle('dark-theme');
+            const isDark = body.classList.contains('dark-theme');
+            
+            // Update icon
+            if (isDark) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // --- FAHHHHH Button Logic (Sound + Alerts + Redirect) ---
+        function triggerFahhhhh() {
+            const isDark = body.classList.contains('dark-theme');
+            const bgColor = isDark ? '#1a1a1a' : '#fff200';
+            const textColor = isDark ? '#fff200' : '#000000';
+
+            // 1. Play "Faaahhhhh" Sound using Native Web Speech API
+            if ('speechSynthesis' in window) {
+                let utterance = new SpeechSynthesisUtterance("Faaahhhhh");
+                utterance.pitch = 0.2; // Deep pitch
+                utterance.rate = 0.5;  // Slow drawn out rate
+                utterance.volume = 1;
+                window.speechSynthesis.speak(utterance);
+            }
+
+            // 2. Trigger iziToast
+            iziToast.show({
+                title: 'FAHHHHH!',
+                message: 'Hold on tight...',
+                position: 'topRight',
+                backgroundColor: isDark ? '#000' : '#000',
+                titleColor: '#fff200',
+                messageColor: '#fff',
+                icon: 'fa-solid fa-volume-high',
+                iconColor: '#fff200',
+                progressBarColor: '#fff200',
+                timeout: 2500
+            });
+
+            // 3. Trigger SweetAlert2
+            Swal.fire({
+                title: 'FAHHHHH!',
+                html: 'Redirecting to <b>@anshurajhans</b>...',
+                icon: 'success',
+                iconColor: textColor,
+                background: bgColor,
+                color: textColor,
+                showConfirmButton: false,
+                timer: 2500,
+                timerProgressBar: true,
+                allowOutsideClick: false,
+                customClass: {
+                    popup: 'swal-custom-font'
+                }
+            }).then(() => {
+                // 4. Redirect to Instagram Profile after alerts finish
+                window.location.href = "https://instagram.com/anshurajhans";
+            });
+        }
+    </script>
+</body>
+</html>
